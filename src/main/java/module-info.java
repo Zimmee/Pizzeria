@@ -8,8 +8,11 @@ module com.example.pizzeria2 {
     requires com.almasb.fxgl.all;
     requires com.google.guice;
     requires lombok;
+    requires json.simple;
 
     opens com.example.pizzeria2 to javafx.fxml;
+    opens core.models to javafx.base;
+
     exports core.services;
     exports com.example.pizzeria2;
 }
