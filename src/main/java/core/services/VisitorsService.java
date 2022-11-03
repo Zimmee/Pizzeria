@@ -33,7 +33,7 @@ public class VisitorsService implements AutoCloseable {
     @Inject
     public VisitorsService()
     {
-        this.visitorCreationDelay = 10000;
+        this.visitorCreationDelay = 10000; //TODO: Add delay settings
 
 
         scheduledExecutorService = Executors.newScheduledThreadPool(1);
@@ -51,8 +51,6 @@ public class VisitorsService implements AutoCloseable {
 
         return new Visitor(new ArrayList<>(), 1);
     }
-
-
 
     @Override
     public void close() throws Exception {
