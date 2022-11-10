@@ -21,4 +21,13 @@ public class Visitor {
         this.pizzas = pizzas;
         this.selectedQueue = selectedQueue;
     }
+
+    @Override
+    public String toString() {
+        return "Visitor{" +
+                "Id='" + Id + '\'' +
+                ", pizzas=" + pizzas +
+                ", selectedQueue=" + selectedQueue +
+                '}';
+    }
 }
