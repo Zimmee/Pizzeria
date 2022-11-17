@@ -1,5 +1,13 @@
 package com.example.pizzeria2;
 
+import core.services.PizzeriaService;
+import core.services.VisitorsService;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import core.models.Pizza;
@@ -61,12 +69,12 @@ public class SettingsController {
     private  ArrayList<Pizza> parsePizzas() {
         try {
             JSONArray obj = (JSONArray) new JSONParser().parse(new FileReader(new File("").getAbsolutePath()+"/src/main/resources/com/example/pizzeria2/menu.json"));
-            var films = new ArrayList<Pizza>();
+            var pizzas = new ArrayList<Pizza>();
             for (int i = 0; i < obj.size(); i++) {
                 var iPizza = (JSONObject) obj.get(i);
                 menu.add(new Pizza((String) iPizza.get("name"), ((Long) iPizza.get("prepTime")).intValue()));
             }
-            return films;
+            return pizzas;
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ParseException e) {
@@ -75,15 +83,17 @@ public class SettingsController {
     }
 
     @FXML
-    private void submit(){
-        System.out.println(cooks.getText());
-        System.out.println(queue.getText());
+    private void submit(ActionEvent e) throws IOException {
+        PizzeriaService pizzeriaService =   Main.getInjector().getInstance(PizzeriaService.class);
+        pizzeriaService.init(new ArrayList<>(menuTable.getItems()), Integer.parseInt(cooks.getText()),Integer.parseInt(queue.getText()));
 
-        System.out.println(Name.getColumns());
+        Node node=(Node) e.getSource();
+        Stage stage=(Stage) node.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
+        Scene mainScene = new Scene(fxmlLoader.load(), 428, 501);
+        stage.setScene(mainScene);
+        stage.show();
 
-        for (var i:menuTable.getItems()){
-            System.out.println(i.getName());
-        }
     }
 
     public void loadFromFile() {
