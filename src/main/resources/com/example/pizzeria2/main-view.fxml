@@ -2,21 +2,29 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pizzeria2.MainController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pizzeria2.MainController">
    <children>
-      <ListView fx:id="visitors" prefHeight="200.0" prefWidth="200.0" />
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <ListView fx:id="visitors" prefHeight="400.0" prefWidth="386.0" />
+      <HBox prefHeight="400.0" prefWidth="105.0">
          <children>
             <RadioButton mnemonicParsing="false" text="High demand" userData="0">
                <toggleGroup>
                   <ToggleGroup fx:id="strategies" />
                </toggleGroup></RadioButton>
-            <RadioButton mnemonicParsing="false" selected="true" text="Average demand" toggleGroup="$strategies" userData="1"/>
-            <RadioButton mnemonicParsing="false" text="Party mode" toggleGroup="$strategies" userData="2"/>
+            <RadioButton mnemonicParsing="false" selected="true" text="Average demand" toggleGroup="$strategies" userData="1" />
+            <RadioButton mnemonicParsing="false" text="Party mode" toggleGroup="$strategies" userData="2" />
          </children>
       </HBox>
+      <TableView id="cooks" fx:id="cooks" prefHeight="400.0" prefWidth="285.0">
+        <columns>
+          <TableColumn fx:id="CookType" prefWidth="75.0" text="C1" />
+          <TableColumn fx:id="CookState" prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
    </children>
 </HBox>
