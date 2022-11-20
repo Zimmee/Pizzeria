@@ -14,7 +14,7 @@ public class SingleTaskStrategy extends Strategy{
         var cooks = new ArrayList<Cook>();
         for (int i = 0; i < cooksNumber; i++) {
             var type = CookType.values()[i%3];
-            cooks.add(new Cook(type, CookState.free));
+            cooks.add(new Cook(i ,type, CookState.free));
         }
 
         return cooks;

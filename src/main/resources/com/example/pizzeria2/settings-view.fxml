@@ -2,9 +2,11 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -12,9 +14,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<HBox fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="428.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pizzeria2.SettingsController">
+<HBox fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="539.0" prefWidth="428.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pizzeria2.SettingsController">
    <children>
-      <Pane prefHeight="501.0" prefWidth="428.0" HBox.hgrow="ALWAYS">
+      <Pane prefHeight="544.0" prefWidth="428.0" HBox.hgrow="ALWAYS">
          <children>
             <GridPane layoutX="103.0" layoutY="51.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="97.0" prefWidth="222.0">
               <columnConstraints>
@@ -43,13 +45,20 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="260.0" layoutY="151.0" onAction="#loadFromFile" mnemonicParsing="false" text="Загрузити з файлу" />
+            <Button layoutX="260.0" layoutY="151.0" mnemonicParsing="false" onAction="#loadFromFile" text="Загрузити з файлу" />
             <Label layoutX="142.0" layoutY="14.0" text="Налаштування">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="161.0" layoutY="431.0" mnemonicParsing="false" onAction="#submit" prefHeight="41.0" prefWidth="106.0" text="Почати" />
+            <Button layoutX="161.0" layoutY="484.0" mnemonicParsing="false" onAction="#submit" prefHeight="41.0" prefWidth="106.0" text="Почати" />
+            <RadioButton layoutX="82.0" layoutY="436.0" mnemonicParsing="false" selected="true" text="Одна функція" userData="1">
+               <toggleGroup>
+                  <ToggleGroup fx:id="cooksStrat" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="260.0" layoutY="436.0" mnemonicParsing="false" text="Мультифункціональні" toggleGroup="$cooksStrat" userData="2"/>
+            <Label layoutX="168.0" layoutY="418.0" text="Стратегія кухарів" />
          </children>
       </Pane>
    </children>

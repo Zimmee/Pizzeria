@@ -23,7 +23,9 @@
       <TableView id="cooks" fx:id="cooks" prefHeight="400.0" prefWidth="285.0">
         <columns>
           <TableColumn fx:id="CookType" prefWidth="75.0" text="C1" />
-          <TableColumn fx:id="CookState" prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="CookState" prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="StopColumn" prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="WorkingOn" prefWidth="75.0" text="Working on" />
         </columns>
       </TableView>
    </children>

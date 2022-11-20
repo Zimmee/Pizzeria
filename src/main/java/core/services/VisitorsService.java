@@ -44,9 +44,9 @@ public class VisitorsService implements AutoCloseable {
 
     public void manageCreatingVisitor()
     {
-//        if(visitors.size()>10){
-//            return;
-//        }
+        if(visitors.size()>4){
+            return;
+        }
         var visitor = selectedStrategy.createVisitor();
         pizzas.addAll(visitor.getPizzas());
         visitors.add(visitor);

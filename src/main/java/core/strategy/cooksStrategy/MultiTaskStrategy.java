@@ -13,7 +13,7 @@ public class MultiTaskStrategy extends Strategy{
     public ArrayList<Cook> createCooks(int cooksNumber) {
         var cooks = new ArrayList<Cook>();
         for (int i = 0; i < cooksNumber; i++) {
-            cooks.add(new Cook(CookType.multi, CookState.free));
+            cooks.add(new Cook(i, CookType.multi, CookState.free));
         }
         return cooks;
     }

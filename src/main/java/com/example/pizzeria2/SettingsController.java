@@ -1,12 +1,14 @@
 package com.example.pizzeria2;
 
+import core.services.CooksService;
 import core.services.PizzeriaService;
-import core.services.VisitorsService;
+import core.strategy.cooksStrategy.MultiTaskStrategy;
+import core.strategy.cooksStrategy.SingleTaskStrategy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -14,10 +16,6 @@ import core.models.Pizza;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.IntegerStringConverter;
@@ -43,6 +41,9 @@ public class SettingsController {
     private TextField queue;
 
     private ObservableList menu = FXCollections.observableArrayList();
+
+    @FXML
+    ToggleGroup cooksStrat;
 
     public void initialize(){
         Name.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -86,11 +87,14 @@ public class SettingsController {
     private void submit(ActionEvent e) throws IOException {
         PizzeriaService pizzeriaService =   Main.getInjector().getInstance(PizzeriaService.class);
         pizzeriaService.init(new ArrayList<>(menuTable.getItems()), Integer.parseInt(cooks.getText()),Integer.parseInt(queue.getText()));
-
+        CooksService cooksService =   Main.getInjector().getInstance(CooksService.class);
+//        System.out.println(cooksStrat.getSelectedToggle().getUserData().toString().equals("1"));
+        cooksService.setCooksStrategy(cooksStrat.getSelectedToggle().getUserData().toString().equals("1")?new SingleTaskStrategy():new MultiTaskStrategy());
+        cooksService.initCooks();
         Node node=(Node) e.getSource();
         Stage stage=(Stage) node.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
-        Scene mainScene = new Scene(fxmlLoader.load(), 428, 501);
+        Scene mainScene = new Scene(fxmlLoader.load(), 779, 501);
         stage.setScene(mainScene);
         stage.show();
 
