@@ -1,4 +1,4 @@
-package core.strategy;
+package core.strategy.visitorsStrategy;
 
 import com.example.pizzeria2.Main;
 import core.models.Pizza;
@@ -8,18 +8,18 @@ import core.utils.Utils;
 
 import java.util.ArrayList;
 
-public class AverageDemandStrategy extends Strategy {
+public class PartyStrategy extends Strategy {
     PizzeriaService pizzeriaService =   Main.getInjector().getInstance(PizzeriaService.class);
 
     @Override
     public Visitor createVisitor() {
-        var pizzasAmount = Utils.getRandomNumberUsingNextInt(1,3);
+        var pizzasAmount = Utils.getRandomNumberUsingNextInt(4,8);
 
         var visitorsPizzas = new ArrayList<Pizza>();
 
         for (int i = 0; i < pizzasAmount; i++) {
             var randomPizza = pizzeriaService.availablePizzas.get(Utils.getRandomNumberUsingNextInt(0, pizzeriaService.availablePizzas.size()));
-            visitorsPizzas.add(randomPizza);
+            visitorsPizzas.add(randomPizza.clone());
         }
 
         var visitorsQueue = Utils.getRandomNumberUsingNextInt(0, pizzeriaService.queueNumber);
@@ -31,6 +31,6 @@ public class AverageDemandStrategy extends Strategy {
 
     @Override
     public int calculateDelay() {
-        return 4/pizzeriaService.queueNumber;
+        return 5/pizzeriaService.queueNumber;
     }
 }

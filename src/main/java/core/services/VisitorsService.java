@@ -1,9 +1,10 @@
 package core.services;
 
 import com.google.inject.Inject;
+import core.models.Pizza;
 import core.models.Visitor;
-import core.strategy.AverageDemandStrategy;
-import core.strategy.Strategy;
+import core.strategy.visitorsStrategy.AverageDemandStrategy;
+import core.strategy.visitorsStrategy.Strategy;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,12 +21,12 @@ public class VisitorsService implements AutoCloseable {
 
     private Strategy selectedStrategy = new AverageDemandStrategy();
 
-    public ObservableList visitors = FXCollections.observableArrayList();
+    public ObservableList<Visitor> visitors = FXCollections.observableArrayList();
+    public ObservableList<Pizza> pizzas = FXCollections.observableArrayList();
 
     private final Runnable visitorsManagerRunnable = new Runnable() {
         @Override
         public void run() {
-            System.out.println(selectedStrategy);
             manageCreatingVisitor();
             scheduledTask = scheduledExecutorService.schedule(()->{Platform.runLater(visitorsManagerRunnable);},
                     selectedStrategy.calculateDelay(),
@@ -39,13 +40,15 @@ public class VisitorsService implements AutoCloseable {
     {
         scheduledExecutorService = Executors.newScheduledThreadPool(1);
         scheduledTask = scheduledExecutorService.schedule(()->{Platform.runLater(visitorsManagerRunnable);}, selectedStrategy.calculateDelay(), TimeUnit.MILLISECONDS);
-        System.out.println("Created");
     }
 
     public void manageCreatingVisitor()
     {
+        if(visitors.size()>4){
+            return;
+        }
         var visitor = selectedStrategy.createVisitor();
-        System.out.println("Created user"+visitor.toString());
+        pizzas.addAll(visitor.getPizzas());
         visitors.add(visitor);
     }
 

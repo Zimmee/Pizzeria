@@ -1,4 +1,4 @@
-package core.strategy;
+package core.strategy.visitorsStrategy;
 
 import core.models.Visitor;
 
