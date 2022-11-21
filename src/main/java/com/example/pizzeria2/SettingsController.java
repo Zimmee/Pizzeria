@@ -94,7 +94,7 @@ public class SettingsController {
         Node node=(Node) e.getSource();
         Stage stage=(Stage) node.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
-        Scene mainScene = new Scene(fxmlLoader.load(), 779, 501);
+        Scene mainScene = new Scene(fxmlLoader.load(), 1200, 501);
         stage.setScene(mainScene);
         stage.show();
 

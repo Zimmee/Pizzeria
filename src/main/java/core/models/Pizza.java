@@ -32,11 +32,9 @@ public class Pizza implements Cloneable{
 
     @Override
     public String toString() {
-        return "Pizza{id" +id.toString() +
-                " name='" + name + '\'' +
-                ", preparationTime=" + preparationTime +
-                ", state=" + state +
-                '}';
+        return "Pizza Name='" + name + ' ' +
+                ", Prepare =" + preparationTime +
+                ", State=" + state;
     }
 
     @Override
