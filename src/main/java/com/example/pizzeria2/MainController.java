@@ -1,7 +1,6 @@
 package com.example.pizzeria2;
 
-import core.models.Cook;
-import core.models.CookState;
+import core.models.*;
 import core.services.CooksService;
 import core.services.VisitorsService;
 import core.strategy.visitorsStrategy.AverageDemandStrategy;
@@ -23,13 +22,20 @@ import javafx.util.Callback;
 import javafx.util.Duration;
 import ui.ActionButtonTableCell;
 
+import java.util.ArrayList;
+
 public class MainController {
     @FXML
     ToggleGroup strategies;
 
     @FXML
-    private ListView visitors;
-
+    private TableView visitors;
+    @FXML
+    private TableColumn<Visitor, String> ID;
+    @FXML
+    private TableColumn<Visitor, ArrayList<Pizza>> OrderedPizza;
+    @FXML
+    private TableColumn<Visitor, Integer> QueueSelected;
     @FXML
     private TableView cooks;
 
@@ -42,11 +48,15 @@ public class MainController {
     @FXML
     private TableColumn<Cook, Button> StopColumn;
 
+
+
     public void initialize(){
         Platform.setImplicitExit(false);
         Main.getInjector().getInstance(CooksService.class).onTick();
         VisitorsService visitorsService =   Main.getInjector().getInstance(VisitorsService.class);
-        visitors.setItems(visitorsService.pizzas);
+        ID.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        OrderedPizza.setCellValueFactory(new PropertyValueFactory<>("pizzas"));
+        QueueSelected.setCellValueFactory(new PropertyValueFactory<>("selectedQueue"));
         visitorsService.manageCreatingVisitor();
 
 
@@ -102,6 +112,7 @@ public class MainController {
 //                };
 //
 //        StopColumn.setCellFactory(cellFactory);
+        visitors.setItems(Main.getInjector().getInstance(VisitorsService.class).visitors);
 
         cooks.setItems(Main.getInjector().getInstance(CooksService.class).cooks);
 
