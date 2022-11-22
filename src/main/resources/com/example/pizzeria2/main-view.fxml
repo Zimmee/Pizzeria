@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pizzeria2.MainController">
    <children>
@@ -16,16 +16,17 @@
            <TableColumn fx:id="QueueSelected" prefWidth="75.0" text="Queue" />
            </columns>
        </TableView>
-      <HBox prefHeight="400.0" prefWidth="105.0">
+      <VBox prefHeight="400.0" prefWidth="121.0">
          <children>
             <RadioButton mnemonicParsing="false" text="High demand" userData="0">
                <toggleGroup>
                   <ToggleGroup fx:id="strategies" />
-               </toggleGroup></RadioButton>
+               </toggleGroup>
+            </RadioButton>
             <RadioButton mnemonicParsing="false" selected="true" text="Average demand" toggleGroup="$strategies" userData="1" />
             <RadioButton mnemonicParsing="false" text="Party mode" toggleGroup="$strategies" userData="2" />
          </children>
-      </HBox>
+      </VBox>
       <TableView id="cooks" fx:id="cooks" prefHeight="400.0" prefWidth="575.0">
         <columns>
           <TableColumn fx:id="CookType" prefWidth="75.0" text="Type" />
